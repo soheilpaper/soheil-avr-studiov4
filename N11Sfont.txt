@@ -1,0 +1,9 @@
+    Copyright:      RAD Electronic Co. LTD,
+    Author:         Sh. Nourbakhsh Rad
+     Remarks:        
+    known Problems: none
+    Version:        2.0.0
+    Description:    TFT-LCD Simple Font ....
+                    for ATmega32 interface ( for WinAVR and CodeVision 2.04a or later)
+                    
+                    LCD : PCF8814 - 65x96 pixles matrix LCD (NOKIA 1100)

@@ -1,0 +1,450 @@
+   1               		.file	"N1100.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	N11_Write
+  18               	N11_Write:
+  19               	.LFB10:
+  20               	.LM1:
+  21               	.LVL0:
+  22               	/* prologue: function */
+  23               	/* frame size = 0 */
+  24               	.LM2:
+  25 0000 DF98      		cbi 59-32,7
+  26               	.LM3:
+  27 0002 DE98      		cbi 59-32,6
+  28               	.LM4:
+  29 0004 8823      		tst r24
+  30 0006 01F0      		breq .L2
+  31 0008 DA9A      		sbi 59-32,2
+  32 000a 00C0      		rjmp .L9
+  33               	.L2:
+  34 000c DA98      		cbi 59-32,2
+  35               	.L9:
+  36 000e 8BB3      		in r24,59-32
+  37               	.LVL1:
+  38               	.LM5:
+  39 0010 DE9A      		sbi 59-32,6
+  40 0012 E0E0      		ldi r30,lo8(BitMASKn+7)
+  41 0014 F0E0      		ldi r31,hi8(BitMASKn+7)
+  42               	.L6:
+  43               	.LM6:
+  44 0016 DE98      		cbi 59-32,6
+  45               	.LM7:
+  46 0018 8081      		ld r24,Z
+  47 001a 8623      		and r24,r22
+  48 001c 01F0      		breq .L4
+  49 001e DA9A      		sbi 59-32,2
+  50 0020 00C0      		rjmp .L10
+  51               	.L4:
+  52 0022 DA98      		cbi 59-32,2
+  53               	.L10:
+  54 0024 8BB3      		in r24,59-32
+  55               	.LM8:
+  56 0026 DE9A      		sbi 59-32,6
+  57 0028 3197      		sbiw r30,1
+  58               	.LM9:
+  59 002a 80E0      		ldi r24,hi8(BitMASKn-1)
+  60 002c E030      		cpi r30,lo8(BitMASKn-1)
+  61 002e F807      		cpc r31,r24
+  62 0030 01F4      		brne .L6
+  63               	.LM10:
+  64 0032 DF9A      		sbi 59-32,7
+  65               	/* epilogue start */
+  66               	.LM11:
+  67 0034 0895      		ret
+  68               	.LFE10:
+  70               	.global	N11_GotoXR
+  72               	N11_GotoXR:
+  73               	.LFB11:
+  74               	.LM12:
+  75               	.LVL2:
+  76 0036 1F93      		push r17
+  77               	/* prologue: function */
+  78               	/* frame size = 0 */
+  79 0038 182F      		mov r17,r24
+  80               	.LM13:
+  81 003a 6F70      		andi r22,lo8(15)
+  82               	.LVL3:
+  83 003c 606B      		ori r22,lo8(-80)
+  84 003e 80E0      		ldi r24,lo8(0)
+  85               	.LVL4:
+  86 0040 0E94 0000 		call N11_Write
+  87               	.LVL5:
+  88               	.LM14:
+  89 0044 612F      		mov r22,r17
+  90 0046 6F70      		andi r22,lo8(15)
+  91 0048 80E0      		ldi r24,lo8(0)
+  92 004a 0E94 0000 		call N11_Write
+  93               	.LM15:
+  94 004e 1295      		swap r17
+  95 0050 1770      		andi r17,lo8(7)
+  96 0052 1061      		ori r17,lo8(16)
+  97 0054 80E0      		ldi r24,lo8(0)
+  98 0056 612F      		mov r22,r17
+  99 0058 0E94 0000 		call N11_Write
+ 100               	/* epilogue start */
+ 101               	.LM16:
+ 102 005c 1F91      		pop r17
+ 103               	.LVL6:
+ 104 005e 0895      		ret
+ 105               	.LFE11:
+ 107               	.global	N11_CLS
+ 109               	N11_CLS:
+ 110               	.LFB13:
+ 111               	.LM17:
+ 112 0060 0F93      		push r16
+ 113 0062 1F93      		push r17
+ 114               	/* prologue: function */
+ 115               	/* frame size = 0 */
+ 116               	.LM18:
+ 117 0064 80E0      		ldi r24,lo8(0)
+ 118 0066 60E0      		ldi r22,lo8(0)
+ 119 0068 0E94 0000 		call N11_GotoXR
+ 120               	.LM19:
+ 121 006c 80E0      		ldi r24,lo8(0)
+ 122 006e 6EEA      		ldi r22,lo8(-82)
+ 123 0070 0E94 0000 		call N11_Write
+ 124 0074 00E0      		ldi r16,lo8(0)
+ 125               	.LVL7:
+ 126 0076 00C0      		rjmp .L14
+ 127               	.LVL8:
+ 128               	.L15:
+ 129               	.LM20:
+ 130 0078 81E0      		ldi r24,lo8(1)
+ 131 007a 60E0      		ldi r22,lo8(0)
+ 132 007c 0E94 0000 		call N11_Write
+ 133               	.LM21:
+ 134 0080 1F5F      		subi r17,lo8(-(1))
+ 135 0082 1036      		cpi r17,lo8(96)
+ 136 0084 01F4      		brne .L15
+ 137               	.LM22:
+ 138 0086 0F5F      		subi r16,lo8(-(1))
+ 139 0088 0930      		cpi r16,lo8(9)
+ 140 008a 01F0      		breq .L16
+ 141               	.L14:
+ 142 008c 10E0      		ldi r17,lo8(0)
+ 143 008e 00C0      		rjmp .L15
+ 144               	.L16:
+ 145               	.LM23:
+ 146 0090 80E0      		ldi r24,lo8(0)
+ 147 0092 6FEA      		ldi r22,lo8(-81)
+ 148 0094 0E94 0000 		call N11_Write
+ 149               	/* epilogue start */
+ 150               	.LM24:
+ 151 0098 1F91      		pop r17
+ 152               	.LVL9:
+ 153 009a 0F91      		pop r16
+ 154               	.LVL10:
+ 155 009c 0895      		ret
+ 156               	.LFE13:
+ 158               	.global	N11_Init
+ 160               	N11_Init:
+ 161               	.LFB12:
+ 162               	.LM25:
+ 163               	/* prologue: function */
+ 164               	/* frame size = 0 */
+ 165               	.LM26:
+ 166 009e D79A      		sbi 58-32,7
+ 167 00a0 DF9A      		sbi 59-32,7
+ 168               	.LM27:
+ 169 00a2 D29A      		sbi 58-32,2
+ 170 00a4 DA98      		cbi 59-32,2
+ 171               	.LM28:
+ 172 00a6 D69A      		sbi 58-32,6
+ 173 00a8 DE98      		cbi 59-32,6
+ 174               	.LM29:
+ 175 00aa D49A      		sbi 58-32,4
+ 176 00ac DC98      		cbi 59-32,4
+ 177               	.LM30:
+ 178 00ae D39A      		sbi 58-32,3
+ 179 00b0 DB98      		cbi 59-32,3
+ 180               	.LM31:
+ 181 00b2 DF98      		cbi 59-32,7
+ 182 00b4 84EF      		ldi r24,lo8(500)
+ 183 00b6 91E0      		ldi r25,hi8(500)
+ 184               	.LVL11:
+ 185               	.LBB24:
+ 186               	.LBB25:
+ 187               	.LBB26:
+ 188               	.LBB27:
+ 189               	.LM32:
+ 190 00b8 20E9      		ldi r18,lo8(400)
+ 191 00ba 31E0      		ldi r19,hi8(400)
+ 192               	.L20:
+ 193 00bc F901      		movw r30,r18
+ 194               	.LVL12:
+ 195               	/* #APP */
+ 196               	 ;  105 "c:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 197 00be 3197      		1: sbiw r30,1
+ 198 00c0 01F4      		brne 1b
+ 199               	 ;  0 "" 2
+ 200               	/* #NOAPP */
+ 201               	.LBE27:
+ 202               	.LBE26:
+ 203               	.LM33:
+ 204 00c2 0197      		sbiw r24,1
+ 205               	.LM34:
+ 206 00c4 01F4      		brne .L20
+ 207               	.LBE25:
+ 208               	.LBE24:
+ 209               	.LM35:
+ 210 00c6 DC9A      		sbi 59-32,4
+ 211               	.LM36:
+ 212 00c8 80E0      		ldi r24,lo8(0)
+ 213               	.LVL13:
+ 214 00ca 63E2      		ldi r22,lo8(35)
+ 215 00cc 0E94 0000 		call N11_Write
+ 216               	.LVL14:
+ 217               	.LM37:
+ 218 00d0 80E0      		ldi r24,lo8(0)
+ 219 00d2 60E9      		ldi r22,lo8(-112)
+ 220 00d4 0E94 0000 		call N11_Write
+ 221               	.LM38:
+ 222 00d8 80E0      		ldi r24,lo8(0)
+ 223 00da 64EA      		ldi r22,lo8(-92)
+ 224 00dc 0E94 0000 		call N11_Write
+ 225               	.LM39:
+ 226 00e0 80E0      		ldi r24,lo8(0)
+ 227 00e2 6FE2      		ldi r22,lo8(47)
+ 228 00e4 0E94 0000 		call N11_Write
+ 229               	.LM40:
+ 230 00e8 80E0      		ldi r24,lo8(0)
+ 231 00ea 60E4      		ldi r22,lo8(64)
+ 232 00ec 0E94 0000 		call N11_Write
+ 233               	.LM41:
+ 234 00f0 80E0      		ldi r24,lo8(0)
+ 235 00f2 60EB      		ldi r22,lo8(-80)
+ 236 00f4 0E94 0000 		call N11_Write
+ 237               	.LM42:
+ 238 00f8 80E0      		ldi r24,lo8(0)
+ 239 00fa 60E1      		ldi r22,lo8(16)
+ 240 00fc 0E94 0000 		call N11_Write
+ 241               	.LM43:
+ 242 0100 80E0      		ldi r24,lo8(0)
+ 243 0102 60E0      		ldi r22,lo8(0)
+ 244 0104 0E94 0000 		call N11_Write
+ 245               	.LM44:
+ 246 0108 80E0      		ldi r24,lo8(0)
+ 247 010a 6CEA      		ldi r22,lo8(-84)
+ 248 010c 0E94 0000 		call N11_Write
+ 249               	.LM45:
+ 250 0110 80E0      		ldi r24,lo8(0)
+ 251 0112 67E0      		ldi r22,lo8(7)
+ 252 0114 0E94 0000 		call N11_Write
+ 253               	.LM46:
+ 254 0118 80E0      		ldi r24,lo8(0)
+ 255 011a 6FEA      		ldi r22,lo8(-81)
+ 256 011c 0E94 0000 		call N11_Write
+ 257               	.LM47:
+ 258 0120 0E94 0000 		call N11_CLS
+ 259               	.LM48:
+ 260 0124 80E0      		ldi r24,lo8(0)
+ 261 0126 67EA      		ldi r22,lo8(-89)
+ 262 0128 0E94 0000 		call N11_Write
+ 263 012c 88E8      		ldi r24,lo8(5000)
+ 264 012e 93E1      		ldi r25,hi8(5000)
+ 265               	.LVL15:
+ 266               	.LBB28:
+ 267               	.LBB29:
+ 268               	.LBB30:
+ 269               	.LBB31:
+ 270               	.LM49:
+ 271 0130 20E9      		ldi r18,lo8(400)
+ 272 0132 31E0      		ldi r19,hi8(400)
+ 273               	.L21:
+ 274 0134 F901      		movw r30,r18
+ 275               	.LVL16:
+ 276               	/* #APP */
+ 277               	 ;  105 "c:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 278 0136 3197      		1: sbiw r30,1
+ 279 0138 01F4      		brne 1b
+ 280               	 ;  0 "" 2
+ 281               	/* #NOAPP */
+ 282               	.LBE31:
+ 283               	.LBE30:
+ 284               	.LM50:
+ 285 013a 0197      		sbiw r24,1
+ 286               	.LM51:
+ 287 013c 01F4      		brne .L21
+ 288               	.LBE29:
+ 289               	.LBE28:
+ 290               	.LM52:
+ 291 013e 80E0      		ldi r24,lo8(0)
+ 292               	.LVL17:
+ 293 0140 66EA      		ldi r22,lo8(-90)
+ 294 0142 0E94 0000 		call N11_Write
+ 295               	.LVL18:
+ 296 0146 88E8      		ldi r24,lo8(5000)
+ 297 0148 93E1      		ldi r25,hi8(5000)
+ 298               	.LVL19:
+ 299               	.LBB32:
+ 300               	.LBB33:
+ 301               	.LBB34:
+ 302               	.LBB35:
+ 303               	.LM53:
+ 304 014a 20E9      		ldi r18,lo8(400)
+ 305 014c 31E0      		ldi r19,hi8(400)
+ 306               	.L22:
+ 307 014e F901      		movw r30,r18
+ 308               	.LVL20:
+ 309               	/* #APP */
+ 310               	 ;  105 "c:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 311 0150 3197      		1: sbiw r30,1
+ 312 0152 01F4      		brne 1b
+ 313               	 ;  0 "" 2
+ 314               	/* #NOAPP */
+ 315               	.LBE35:
+ 316               	.LBE34:
+ 317               	.LM54:
+ 318 0154 0197      		sbiw r24,1
+ 319               	.LM55:
+ 320 0156 01F4      		brne .L22
+ 321               	/* epilogue start */
+ 322               	.LBE33:
+ 323               	.LBE32:
+ 324               	.LM56:
+ 325 0158 0895      		ret
+ 326               	.LFE12:
+ 328               	.global	N11_Update
+ 330               	N11_Update:
+ 331               	.LFB14:
+ 332               	.LM57:
+ 333               	/* prologue: function */
+ 334               	/* frame size = 0 */
+ 335               	/* epilogue start */
+ 336               	.LM58:
+ 337 015a 0895      		ret
+ 338               	.LFE14:
+ 340               	.global	N11_Contrast
+ 342               	N11_Contrast:
+ 343               	.LFB15:
+ 344               	.LM59:
+ 345               	.LVL21:
+ 346 015c 1F93      		push r17
+ 347               	/* prologue: function */
+ 348               	/* frame size = 0 */
+ 349 015e 182F      		mov r17,r24
+ 350               	.LM60:
+ 351 0160 80E0      		ldi r24,lo8(0)
+ 352               	.LVL22:
+ 353 0162 61E2      		ldi r22,lo8(33)
+ 354 0164 0E94 0000 		call N11_Write
+ 355               	.LM61:
+ 356 0168 1068      		ori r17,lo8(-128)
+ 357 016a 80E0      		ldi r24,lo8(0)
+ 358 016c 612F      		mov r22,r17
+ 359 016e 0E94 0000 		call N11_Write
+ 360               	.LM62:
+ 361 0172 80E0      		ldi r24,lo8(0)
+ 362 0174 60E2      		ldi r22,lo8(32)
+ 363 0176 0E94 0000 		call N11_Write
+ 364               	/* epilogue start */
+ 365               	.LM63:
+ 366 017a 1F91      		pop r17
+ 367               	.LVL23:
+ 368 017c 0895      		ret
+ 369               	.LFE15:
+ 371               	.global	N11_Backlight
+ 373               	N11_Backlight:
+ 374               	.LFB16:
+ 375               	.LM64:
+ 376               	.LVL24:
+ 377               	/* prologue: function */
+ 378               	/* frame size = 0 */
+ 379               	.LM65:
+ 380 017e 8823      		tst r24
+ 381 0180 01F0      		breq .L32
+ 382 0182 DB9A      		sbi 59-32,3
+ 383 0184 00C0      		rjmp .L35
+ 384               	.L32:
+ 385 0186 DB98      		cbi 59-32,3
+ 386               	.L35:
+ 387 0188 8BB3      		in r24,59-32
+ 388               	.LVL25:
+ 389 018a 0895      		ret
+ 390               	.LFE16:
+ 392               	.global	N11_SetPixel
+ 394               	N11_SetPixel:
+ 395               	.LFB17:
+ 396               	.LM66:
+ 397               	.LVL26:
+ 398               	/* prologue: function */
+ 399               	/* frame size = 0 */
+ 400               	/* epilogue start */
+ 401               	.LM67:
+ 402 018c 0895      		ret
+ 403               	.LFE17:
+ 405               	.global	N11_ReadPixel
+ 407               	N11_ReadPixel:
+ 408               	.LFB18:
+ 409               	.LM68:
+ 410               	.LVL27:
+ 411               	/* prologue: function */
+ 412               	/* frame size = 0 */
+ 413               	.LM69:
+ 414 018e 80E0      		ldi r24,lo8(0)
+ 415               	.LVL28:
+ 416               	/* epilogue start */
+ 417 0190 0895      		ret
+ 418               	.LFE18:
+ 420               	.global	N11_FillRect
+ 422               	N11_FillRect:
+ 423               	.LFB19:
+ 424               	.LM70:
+ 425               	.LVL29:
+ 426               	/* prologue: function */
+ 427               	/* frame size = 0 */
+ 428               	/* epilogue start */
+ 429               	.LM71:
+ 430 0192 0895      		ret
+ 431               	.LFE19:
+ 433               	.global	N11_DrawBitmap
+ 435               	N11_DrawBitmap:
+ 436               	.LFB20:
+ 437               	.LM72:
+ 438               	.LVL30:
+ 439               	/* prologue: function */
+ 440               	/* frame size = 0 */
+ 441               	/* epilogue start */
+ 442               	.LM73:
+ 443 0194 0895      		ret
+ 444               	.LFE20:
+ 446               		.data
+ 449               	BitMASKn:
+ 450 0000 01        		.byte	1
+ 451 0001 02        		.byte	2
+ 452 0002 04        		.byte	4
+ 453 0003 08        		.byte	8
+ 454 0004 10        		.byte	16
+ 455 0005 20        		.byte	32
+ 456 0006 40        		.byte	64
+ 457 0007 80        		.byte	-128
+ 562               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 N1100.c
+C:\DOCUME~1\Sabz\LOCALS~1\Temp/ccm7SCvL.s:2      *ABS*:0000003f __SREG__
+C:\DOCUME~1\Sabz\LOCALS~1\Temp/ccm7SCvL.s:3      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\Sabz\LOCALS~1\Temp/ccm7SCvL.s:4      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\Sabz\LOCALS~1\Temp/ccm7SCvL.s:5      *ABS*:00000034 __CCP__
+C:\DOCUME~1\Sabz\LOCALS~1\Temp/ccm7SCvL.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\Sabz\LOCALS~1\Temp/ccm7SCvL.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\Sabz\LOCALS~1\Temp/ccm7SCvL.s:18     .text:00000000 N11_Write
+C:\DOCUME~1\Sabz\LOCALS~1\Temp/ccm7SCvL.s:449    .data:00000000 BitMASKn
+C:\DOCUME~1\Sabz\LOCALS~1\Temp/ccm7SCvL.s:72     .text:00000036 N11_GotoXR
+C:\DOCUME~1\Sabz\LOCALS~1\Temp/ccm7SCvL.s:109    .text:00000060 N11_CLS
+C:\DOCUME~1\Sabz\LOCALS~1\Temp/ccm7SCvL.s:160    .text:0000009e N11_Init
+C:\DOCUME~1\Sabz\LOCALS~1\Temp/ccm7SCvL.s:330    .text:0000015a N11_Update
+C:\DOCUME~1\Sabz\LOCALS~1\Temp/ccm7SCvL.s:342    .text:0000015c N11_Contrast
+C:\DOCUME~1\Sabz\LOCALS~1\Temp/ccm7SCvL.s:373    .text:0000017e N11_Backlight
+C:\DOCUME~1\Sabz\LOCALS~1\Temp/ccm7SCvL.s:394    .text:0000018c N11_SetPixel
+C:\DOCUME~1\Sabz\LOCALS~1\Temp/ccm7SCvL.s:407    .text:0000018e N11_ReadPixel
+C:\DOCUME~1\Sabz\LOCALS~1\Temp/ccm7SCvL.s:422    .text:00000192 N11_FillRect
+C:\DOCUME~1\Sabz\LOCALS~1\Temp/ccm7SCvL.s:435    .text:00000194 N11_DrawBitmap
+
+UNDEFINED SYMBOLS
+__do_copy_data
